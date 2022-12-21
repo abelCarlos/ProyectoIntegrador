@@ -1,91 +1,107 @@
-import React, { Component } from 'react';
 import axios from 'axios';
-import md5 from 'md5';
-import Cookies from 'universal-cookie';
+import {useState} from 'react';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Box, Container } from '@mui/system';
+import { Avatar, Button, Checkbox, CssBaseline, FormControlLabel, Grid, TextField, Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
 
-const baseUrl="https://63a1d85ba543280f7762bfeb.mockapi.io/abellogin";
-const cookies = new Cookies();
+const baseUrl="http://127.0.0.1:8000/api/auth/login";
+const theme = createTheme();
 
-export class Login extends Component {
-    state={
-        form:{
-            username: '',
-            password: ''
-        }
+export function Login(){
+
+    const [datos,setDatos] = useState({
+        email: '',
+        password: ''
+    });
+    const handleInputChange = (e) =>{
+        let {name,value } = e.target;
+        let newDatos = {...datos, [name]: value};
+        setDatos(newDatos);
     }
-
-    handleChange=async e=>{
-        await this.setState({
-            form:{
-                ...this.state.form,
-                [e.target.name]: e.target.value
-            }
-        });
+    const handleSubmit = async(e)=>{
+        e.preventDefault();
+        if(!e.target.checkValidity()){
+        console.log("no enviar");
+        }else{
+         await axios.post(baseUrl,datos)
+         .then((res)=>{
+            const {data} = res;
+            console.log(data);
+            setTimeout(()=>{
+                localStorage.setItem("token",data?.access_token)
+                window.location.href="./main";
+         },1500);
+         });
     }
-
-    iniciarSesion=async()=>{
-        await axios.get(baseUrl, {params: {username: this.state.form.username, password: md5(this.state.form.password)}})
-        .then(response=>{
-            return response.data;
-        })
-        .then(response=>{
-            if(response.length>0){
-                var respuesta=response[0];  
-                console.log(respuesta.data);
-                cookies.set('id', respuesta.id, {path: "/"});
-                cookies.set('apellido_paterno', respuesta.apellido_paterno, {path: "/"});
-                cookies.set('apellido_materno', respuesta.apellido_materno, {path: "/"});
-                cookies.set('nombre', respuesta.nombre, {path: "/"});
-                cookies.set('username', respuesta.username, {path: "/"});
-                alert(`Bienvenido ${respuesta.username} ${respuesta.apellido_paterno}`);
-                window.location.href="./";
-            }else{
-                alert('El usuario o la contraseña no son correctos');
-            }
-        })
-        .catch(error=>{
-            console.log(error);
-        })
-
-
-    }
-
-    componentDidMount() {
-        if(cookies.get('username')){
-            window.location.href="./";
-        }
-    }
-    
-
-    render() {
-        return (
-    <div className="containerPrincipal">
-        <div className="containerSecundario">
-          <div className="form-group">
-            <label>Usuario: </label>
-            <br />
-            <input
-              type="text"
-              className="form-control"
-              name="username"
-              onChange={this.handleChange}
+};
+    return (
+    <section className="h-100"> 
+    <ThemeProvider theme={theme}>
+      <Container onSubmit={handleSubmit} component="main" maxWidth="xs">
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Sign in
+          </Typography>
+          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+            <TextField
+              onChange={handleInputChange}
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              autoFocus
             />
-            <br />
-            <label>Contraseña: </label>
-            <br />
-            <input
-              type="password"
-              className="form-control"
+            <TextField
+              onChange={handleInputChange}
+              margin="normal"
+              required
+              fullWidth
               name="password"
-              onChange={this.handleChange}
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
             />
-            <br />
-            <button className="btn btn-primary" onClick={()=> this.iniciarSesion()}>Iniciar Sesión</button>
-          </div>
-        </div>
-      </div>
+            <FormControlLabel
+              control={<Checkbox value="remember" color="primary" />}
+              label="Remember me"
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Sign In
+            </Button>
+            <Grid container>
+              <Grid item>
+                <Link href="#" variant="body2">
+                  {"Sign Up"}
+                </Link>
+              </Grid>
+            </Grid>
+          </Box>
+        </Box>
+      </Container>
+    </ThemeProvider>
+
+  </section>
         );
     }
-}
 
 export default Login;

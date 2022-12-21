@@ -1,25 +1,26 @@
+/* eslint-disable no-unreachable */
 import './App.css';
-import {Upload} from'./Components/Upload';
-import {Home} from'./Components/Home';
 import {Login} from'./Components/Login';
 import { Route, Routes } from 'react-router-dom';
-import Navbar from './Components/Navbar';
+import {AppMain} from './AppMain';
+import { QueryClient, QueryClientProvider} from 'react-query'
+import {Registro} from'./Components/Registro';
+
+
+const queryClient = new QueryClient()
 
 
 function App() {
-  return (
-    <div className="App">
-          <Navbar/>
-          <header className="App-header">
-            <Routes>            
-                <Route path="/" element={<Home/>} />
-                <Route path="/upload" element={<Upload/>} />
-                <Route path="/login" element={<Login/>} />
-            </Routes>
-          </header>          
-    </div>
-      
+// eslint-disable-next-line no-unused-vars
+
+
+  return (<QueryClientProvider client={queryClient}>
+          <Routes>
+              <Route path="/" element={<Login/>} />
+              <Route path="/main" element={<AppMain/>} />
+              <Route path="/registro" element={<Registro/>} />
+          </Routes>
+          </QueryClientProvider>
   );
 }
-
 export default App;

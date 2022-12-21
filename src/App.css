@@ -5,8 +5,8 @@
 .navbar {
   display: flex;
   justify-content: flex-start;
-  color: rgb(223, 151, 151);
-  background-color: rgb(9, 7, 129);
+  color: rgb(114, 37, 37);
+  background-color: rgb(45, 44, 68);
 }
 
 .link{
