@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const backendUrl= "http://3.236.233.51"
+const backendUrl= "http://44.192.20.147"
 
 export const ApiClasificaciones=(token) => ({
 	get: () => axios({

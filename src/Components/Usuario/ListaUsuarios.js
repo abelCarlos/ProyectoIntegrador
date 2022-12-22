@@ -2,20 +2,20 @@ import { Button, Card, CardContent, CardHeader, Grid } from '@mui/material';
 import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { useQuery } from 'react-query';
-import { ApiSolicitudes } from '../Api/ApiSolicitudes';
+import { ApiUser } from '../../Api/ApiLogin';
 
 const columns = [
     { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'razon_social', headerName: 'Razon_social', width: 130 },
-    { field: 'ruc', headerName: 'Ruc', width: 130 },
-    { field: 'presupuesto', headerName: 'Presupuesto', width: 130 },
-    { field: 'estado', headerName: 'Estado', width: 130 },
-    { field: 'acciones', headerName: 'Acciones', width: 130 },
+    { field: 'name', headerName: 'Nombre', width: 130 },
+    { field: 'email', headerName: 'Email', width: 130 },
+    { field: 'created_at', headerName: 'Fecha de creacion', width: 130 },
+    { field: 'acciones', headerName: 'acciones', width: 130 },
   ];
-export const Solicitudes = () => {
+export const ListaUsuarios = () => {
+
   const token = localStorage.getItem('token')
   console.log(token)
-  const {data,isLoading} = useQuery(["login"],()=> ApiSolicitudes(token).get())
+  const {data,isLoading} = useQuery(["login"],()=> ApiUser(token).get())
   if(isLoading){
       console.log("cargando");
         return <p>
@@ -23,10 +23,11 @@ export const Solicitudes = () => {
         </p>
     }
     console.log(data);
+
   return (
         <Card sx={{ border:"groove", mt:1}}>
             <Grid>
-                <CardHeader title={'Ver datos del usuario '/*+data.numero*/} />
+                <CardHeader title={'Ver lista del usuario '/*+data.numero*/} />
                 <CardContent >
                 <div style={{ height: 400, width: '100%' }}>
                     <DataGrid
@@ -38,9 +39,9 @@ export const Solicitudes = () => {
                     />
                 </div>
                 </CardContent>
+                <Button variant="outlined" size="medium">Salir</Button>
             </Grid>
-            <Button variant="outlined" size="medium">Salir</Button>
         </Card>
   );
 }
-export default Solicitudes;
+export default ListaUsuarios;

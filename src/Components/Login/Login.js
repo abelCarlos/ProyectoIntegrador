@@ -5,7 +5,7 @@ import { Box, Container } from '@mui/system';
 import { Avatar, Button, Checkbox, CssBaseline, FormControlLabel, Grid, TextField, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 
-const baseUrl="http://3.236.233.51/api/auth/login";
+const baseUrl="http://44.192.20.147/api/auth/login";
 const theme = createTheme();
 
 export function Login(){
@@ -23,6 +23,7 @@ export function Login(){
         e.preventDefault();
         if(!e.target.checkValidity()){
         console.log("no enviar");
+        alert("Ingrese datos en los campos requeridos");
         }else{
          await axios.post(baseUrl,datos)
          .then((res)=>{

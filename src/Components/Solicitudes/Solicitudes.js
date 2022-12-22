@@ -2,20 +2,20 @@ import { Button, Card, CardContent, CardHeader, Grid } from '@mui/material';
 import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { useQuery } from 'react-query';
-import { ApiUser } from '../Api/ApiLogin';
+import { ApiSolicitudes } from '../../Api/ApiSolicitudes';
 
 const columns = [
     { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'name', headerName: 'Nombre', width: 130 },
-    { field: 'email', headerName: 'Email', width: 130 },
-    { field: 'created_at', headerName: 'Fecha de creacion', width: 130 },
-    { field: 'acciones', headerName: 'acciones', width: 130 },
+    { field: 'razon_social', headerName: 'Razon_social', width: 130 },
+    { field: 'ruc', headerName: 'Ruc', width: 130 },
+    { field: 'presupuesto', headerName: 'Presupuesto', width: 130 },
+    { field: 'estado', headerName: 'Estado', width: 130 },
+    { field: 'acciones', headerName: 'Acciones', width: 130 },
   ];
-export const ListaUsuarios = () => {
-
+export const Solicitudes = () => {
   const token = localStorage.getItem('token')
   console.log(token)
-  const {data,isLoading} = useQuery(["login"],()=> ApiUser(token).get())
+  const {data,isLoading} = useQuery(["login"],()=> ApiSolicitudes(token).get())
   if(isLoading){
       console.log("cargando");
         return <p>
@@ -23,13 +23,12 @@ export const ListaUsuarios = () => {
         </p>
     }
     console.log(data);
-
   return (
-        <Card sx={{ border:"groove", mt:1}}>
+        <Card >
             <Grid>
-                <CardHeader title={'Ver lista del usuario '/*+data.numero*/} />
+                <CardHeader title={'Ver datos del usuario '/*+data.numero*/} />
                 <CardContent >
-                <div style={{ height: 400, width: '100%' }}>
+                <div style={{ height:400, width: 1000 }}>
                     <DataGrid
                         rows={data}
                         columns={columns}
@@ -39,9 +38,9 @@ export const ListaUsuarios = () => {
                     />
                 </div>
                 </CardContent>
-                <Button variant="outlined" size="medium">Salir</Button>
             </Grid>
+            <Button variant="outlined" size="medium">Salir</Button>
         </Card>
   );
 }
-export default ListaUsuarios;
+export default Solicitudes;
