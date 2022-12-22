@@ -1,21 +1,15 @@
-import { Button, Card, CardContent, CardHeader, Grid } from '@mui/material';
+import {  Button, Card, CardContent, Grid, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material';
 import * as React from 'react';
-import { DataGrid } from '@mui/x-data-grid';
 import { useQuery } from 'react-query';
 import { ApiSolicitudes } from '../../Api/ApiSolicitudes';
 
-const columns = [
-    { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'razon_social', headerName: 'Razon_social', width: 130 },
-    { field: 'ruc', headerName: 'Ruc', width: 130 },
-    { field: 'presupuesto', headerName: 'Presupuesto', width: 130 },
-    { field: 'estado', headerName: 'Estado', width: 130 },
-    { field: 'acciones', headerName: 'Acciones', width: 130 },
-  ];
+import Paper from '@mui/material/Paper';
+import { Link } from 'react-router-dom';
+
 export const Solicitudes = () => {
   const token = localStorage.getItem('token')
   console.log(token)
-  const {data,isLoading} = useQuery(["login"],()=> ApiSolicitudes(token).get())
+  const {data,isLoading} = useQuery(["solicitudes"],()=> ApiSolicitudes(token).get())
   if(isLoading){
       console.log("cargando");
         return <p>
@@ -24,23 +18,51 @@ export const Solicitudes = () => {
     }
     console.log(data);
   return (
-        <Card >
-            <Grid>
-                <CardHeader title={'Ver datos del usuario '/*+data.numero*/} />
-                <CardContent >
-                <div style={{ height:400, width: 1000 }}>
-                    <DataGrid
-                        rows={data}
-                        columns={columns}
-                        pageSize={5}
-                        rowsPerPageOptions={[5]}
-                        checkboxSelection
-                    />
-                </div>
-                </CardContent>
-            </Grid>
-            <Button variant="outlined" size="medium">Salir</Button>
-        </Card>
+    <Card  component={Paper}>
+      <Grid>
+      <CardContent>
+      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell>Id</TableCell>
+            <TableCell align="right">Razon social</TableCell>
+            <TableCell align="right">Ruc</TableCell>
+            <TableCell align="right">Descripcion</TableCell>
+            <TableCell align="right">Presupuesto</TableCell>
+            <TableCell align="right">Estado</TableCell>
+            <TableCell align="center">Accion</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+        {data.map((dato) => (
+            <TableRow
+            key={dato.id}
+              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+            >
+              <TableCell component="th" scope="row">
+                {dato.id}
+              </TableCell>
+              <TableCell align="right">{dato.razon_social}</TableCell>
+              <TableCell align="right">{dato.ruc}</TableCell>
+              <TableCell align="right">{dato.descripcion}</TableCell>
+              <TableCell align="right">{dato.presupuesto}</TableCell>
+              <TableCell align="right">{dato.estado}</TableCell>
+              <TableCell align="right">
+                <Link className="link" to='editsolicitudes'>Usuario</Link>
+                <Button color="primary" > Editar</Button>
+              <Button color="secondary" >Eliminar</Button>
+              </TableCell>
+              
+
+            </TableRow>
+            ))}
+        </TableBody>
+        
+      </Table>                          
+                    </CardContent >
+      </Grid>
+    
+  </Card>
   );
 }
 export default Solicitudes;

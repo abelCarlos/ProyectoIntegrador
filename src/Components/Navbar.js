@@ -37,12 +37,12 @@ export const Navbar = () => {
         <Toolbar>
             <Link className="link" to=''>Home</Link>
             <Link className="link" to='datosuser'>Usuario</Link>
+            <Link className="link" to='listausers'>Usuarios</Link>
             <Link className="link" to='upload'>Cargar</Link>
             <Link className="link" to='solicitudes'>solicitudes</Link>
+            <Link className="link" to='editar'>Editar usuario</Link>
             <Typography className="tp" variant="h6"  component="div" sx={{ flexGrow: 1 }}> Clasificacion </Typography>
             {/* <p>{data.email}</p> */}
-              
-            
             <ListItemIcon>
               <LogoutIcon className="link" onClick={Logout}>
               Logout

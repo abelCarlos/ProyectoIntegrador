@@ -6,6 +6,10 @@ import {Home} from './Components/Home';
 import {Navbar} from './Components/Navbar';
 import {Solicitudes} from './Components/Solicitudes/Solicitudes';
 import {DatosUsuario} from './Components/Usuario/DatosUsuario';
+import {EditarSolicitudes} from './Components/Solicitudes/EditarSolicitudes';
+import {ListaUsuarios} from './Components/Usuario/ListaUsuarios';
+import {ErrorPage} from './Components/ErrorPage';
+import EditarUsuario from './Components/Usuario/EditarUsuario';
 
 
 export function AppMain() {
@@ -19,7 +23,11 @@ export function AppMain() {
                 <Route path="registro" element={<Registro/>}/>
                 <Route path="home" element={<Home/>}/>
                 <Route path="datosuser" element={<DatosUsuario/>} />
-                <Route path="solicitudes" element={<Solicitudes/>} />
+                <Route path="solicitudes/*" element={<Solicitudes/>}>
+                  <Route path="editsolicitudes" element={<EditarSolicitudes/>} />
+                </Route>
+              <Route path="editar" element={<EditarUsuario/>} />              
+              <Route path="listausers" element={<ListaUsuarios/>} />
           </Routes>
            
       </div>

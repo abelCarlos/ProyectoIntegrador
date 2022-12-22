@@ -24,7 +24,6 @@ export const EditarUsuario = () => {
                             </Box>
                         </CardContent>
                         <Button variant="contained" color="success">Guardar</Button>
-                        <Button variant="outlined" size="medium">Salir</Button>
             </Grid><br/>
         </Card>
   );

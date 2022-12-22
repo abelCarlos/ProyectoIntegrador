@@ -22,9 +22,6 @@ function App() {
               <Route path="/" element={<Login/>} />
               <Route path='/main/*' element={<AppMain/>}/>
               <Route path="/registro" element={<Registro/>} />
-              <Route path="/listausers" element={<ListaUsuarios/>} />
-              <Route path="/editar" element={<EditarUsuario/>} />
-              <Route path="/editsolicitudes" element={<EditarSolicitudes/>} />
             </Routes>
             
           </BrowserRouter>
