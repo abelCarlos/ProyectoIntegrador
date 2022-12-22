@@ -5,7 +5,7 @@ import { Box, Container } from '@mui/system';
 import { Avatar, Button, Checkbox, CssBaseline, FormControlLabel, Grid, TextField, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 
-const baseUrl="http://127.0.0.1:8000/api/auth/login";
+const baseUrl="http://3.236.233.51/api/auth/login";
 const theme = createTheme();
 
 export function Login(){

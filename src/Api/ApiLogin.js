@@ -1,18 +1,28 @@
 import axios from "axios";
 
-const baseUrl="http://127.0.0.1:8000/api";
+const backendUrl= "http://3.236.233.51"
 
 export const ApiClasificaciones=(token) => ({
 	get: () => axios({
-		url: `${baseUrl}/clasificaciones`,
+		url: `${backendUrl}/api/clasificaciones`,
 			headers: {
 				Authorization: `Bearer ${token}`
 			}
 	}).then(({data}) => data)
 });
+
+export const ApiUser=(token) => ({
+	get: () => axios({
+		url: `${backendUrl}/api/users`,
+			headers: {
+				Authorization: `Bearer ${token}`
+			}
+	}).then(({data}) => data)
+});
+
 export const ApiLogin=(token) => ({
 	post: () => axios({
-		url: `${baseUrl}/auth/me`,
+		url: `${backendUrl}/api/auth/me`,
 			method: "post",
 			headers: {
 				Authorization: `Bearer ${token}`
@@ -22,7 +32,7 @@ export const ApiLogin=(token) => ({
 
 export const ApiLogout=(token) => ({
 	post: () => axios({
-		url: `${baseUrl}/auth/logout`,
+		url: `${backendUrl}/api/auth/logout`,
 			method: "post",
 			headers: {
 				Authorization: `Bearer ${token}`

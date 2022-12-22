@@ -5,7 +5,7 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import { Button } from '@mui/material';
 
@@ -19,10 +19,10 @@ export const Navbar = ({nombre}) => {
   return (
     <div className="navbar">
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="relative">
+      <AppBar position="absolute">
         <Toolbar>
-            <NavLink className="link" to="/home">Home</NavLink>
-            <NavLink className="link" to="/upload">Cargar</NavLink>
+            <Link className="link" to="/home">Home</Link>
+            <Link className="link" to="/upload">Cargar</Link>
             <Typography className="tp" variant="h6"  component="div" sx={{ flexGrow: 1 }}> Clasificacion </Typography>
             <text>{nombre}</text>
             <Button variant="contained" onClick={()=>Logout(navigate("/"))}>
