@@ -4,7 +4,6 @@ import { useQuery } from 'react-query';
 import { ApiSolicitudes } from '../../Api/ApiSolicitudes';
 
 import Paper from '@mui/material/Paper';
-import { Link } from 'react-router-dom';
 
 export const Solicitudes = () => {
   const token = localStorage.getItem('token')
@@ -48,7 +47,6 @@ export const Solicitudes = () => {
               <TableCell align="right">{dato.presupuesto}</TableCell>
               <TableCell align="right">{dato.estado}</TableCell>
               <TableCell align="right">
-                <Link className="link" to='editsolicitudes'>Usuario</Link>
                 <Button color="primary" > Editar</Button>
               <Button color="secondary" >Eliminar</Button>
               </TableCell>

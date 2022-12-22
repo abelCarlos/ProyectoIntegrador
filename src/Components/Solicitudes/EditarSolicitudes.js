@@ -1,7 +1,5 @@
 import { Box, Button, Card, CardContent, CardHeader, Grid, List, ListItem, TextField } from '@mui/material';
 import * as React from 'react';
-import { useQuery } from 'react-query';
-import { ApiEditarSolicitudes } from '../../Api/ApiSolicitudes';
 
 export const EditarSolicitudes = () => {
 
@@ -16,14 +14,14 @@ export const EditarSolicitudes = () => {
 //         </p>
 //     }
 //     console.log(data);
-const data = [
-    { id: 1, personaje: "Naruto", anime: "Naruto" },
-    { id: 2, personaje: "Goku", anime: "Dragon Ball" },
-    { id: 3, personaje: "Kenshin Himura", anime: "Rurouni Kenshin" },
-    { id: 4, personaje: "Monkey D. Luffy", anime: "One Piece" },
-    { id: 5, personaje: "Edward Elric", anime: "Fullmetal Alchemist: Brotherhood"},
-    { id: 6, personaje: "Seto Kaiba", anime: "Yu-Gi-Oh!" },
-  ];
+// const data = [
+//     { id: 1, personaje: "Naruto", anime: "Naruto" },
+//     { id: 2, personaje: "Goku", anime: "Dragon Ball" },
+//     { id: 3, personaje: "Kenshin Himura", anime: "Rurouni Kenshin" },
+//     { id: 4, personaje: "Monkey D. Luffy", anime: "One Piece" },
+//     { id: 5, personaje: "Edward Elric", anime: "Fullmetal Alchemist: Brotherhood"},
+//     { id: 6, personaje: "Seto Kaiba", anime: "Yu-Gi-Oh!" },
+//   ];
 
   return (
         <Card sx={{ border:"groove", mt:1}}>
@@ -51,7 +49,7 @@ const data = [
                             </List>
                             </Box>
                         </CardContent>
-                        <Button variant="contained" color="success">Guardar</Button>                        
+                        <Button variant="contained" color="success">Guardar</Button>
             </Grid><br/>
         </Card>
   );

@@ -8,12 +8,12 @@ import {Solicitudes} from './Components/Solicitudes/Solicitudes';
 import {DatosUsuario} from './Components/Usuario/DatosUsuario';
 import {EditarSolicitudes} from './Components/Solicitudes/EditarSolicitudes';
 import {ListaUsuarios} from './Components/Usuario/ListaUsuarios';
-import {ErrorPage} from './Components/ErrorPage';
 import EditarUsuario from './Components/Usuario/EditarUsuario';
+import CrearSolicitud from './Components/Solicitudes/CrearSolicitud';
 
 
 export function AppMain() {
-  
+
   return (
     <div className="App">
       <div className="App-header">
@@ -26,10 +26,11 @@ export function AppMain() {
                 <Route path="solicitudes/*" element={<Solicitudes/>}>
                   <Route path="editsolicitudes" element={<EditarSolicitudes/>} />
                 </Route>
-              <Route path="editar" element={<EditarUsuario/>} />              
+              <Route path="editar" element={<EditarUsuario/>} />
               <Route path="listausers" element={<ListaUsuarios/>} />
+              <Route path="crearsolicitud" element={<CrearSolicitud/>} />
           </Routes>
-           
+
       </div>
     </div>
   );

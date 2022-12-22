@@ -40,7 +40,8 @@ export const Navbar = () => {
             <Link className="link" to='listausers'>Usuarios</Link>
             <Link className="link" to='upload'>Cargar</Link>
             <Link className="link" to='solicitudes'>solicitudes</Link>
-            <Link className="link" to='editar'>Editar usuario</Link>
+            {/* <Link className="link" to='editar'>Editar usuario</Link>
+            <Link className="link" to='crearsolicitud'>Crear Solicitud</Link> */}
             <Typography className="tp" variant="h6"  component="div" sx={{ flexGrow: 1 }}> Clasificacion </Typography>
             {/* <p>{data.email}</p> */}
             <ListItemIcon>
